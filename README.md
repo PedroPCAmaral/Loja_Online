@@ -1,39 +1,51 @@
 # Loja_Online
 Padrão Singleton
 
+🛒 Lojinha Online
+📌 Descrição do Projeto
 
-🛒 Sistema de Lojinha Online (Simulação)
-📌 Contexto
+Este projeto consiste na simulação de uma lojinha online, desenvolvida em Java, com base nos conceitos de Engenharia de Software, UML e Modelagem de Dados.
 
-Este projeto foi desenvolvido a partir de um Diagrama N0 apresentado em aula, que descreve o funcionamento de uma lojinha online baseada em uma arquitetura cliente-servidor monolítica.
+O sistema simula o fluxo completo de uma compra online, desde a navegação do cliente até o processamento do pagamento.
 
-Nesse modelo, todas as responsabilidades do backend estão centralizadas em uma única aplicação, que se comunica com clientes e também com um sistema externo de pagamento.
+🎯 Objetivos
+Aplicar conceitos de Programação Orientada a Objetos (POO)
+Modelar o sistema utilizando UML (Diagrama de Atividades)
+Criar um Diagrama Entidade-Relacionamento (DER)
+Implementar um sistema seguindo o padrão cliente-servidor monolítico
+Utilizar o padrão de projeto Singleton
+🧩 Funcionalidades
+Identificação de cliente (dados fixos)
+Listagem de produtos
+Criação de pedidos
+Adição de itens ao pedido
+Cálculo do valor total
+Processamento de pagamento
+Retorno de pagamento aprovado ou recusado
+🏗️ Arquitetura do Projeto
 
-O objetivo deste projeto é evoluir essa modelagem inicial e implementar uma simulação funcional do sistema.
+O sistema segue uma arquitetura monolítica, organizada em pacotes:
 
-🎯 Objetivo
+com.lojinha
+ ├── model        → Entidades do sistema
+ ├── service      → Regras de negócio
+ └── main         → Classe principal (execução)
+📊 Modelagem
+🔹 Diagrama de Atividades
 
-Desenvolver os seguintes artefatos:
-
-📊 Diagrama de Atividades (UML)
-🧩 Diagrama Entidade-Relacionamento (DER)
-💻 Implementação em Java (simulação do sistema)
-📊 Diagrama de Atividades
-
-O diagrama representa o fluxo principal do sistema, incluindo:
+Representa o fluxo da aplicação:
 
 Navegação do cliente
 Seleção de produtos
-Criação de pedido
-Processamento de pagamento
-Comunicação com sistema externo
-Confirmação ou falha da compra
+Finalização do pedido
+Integração com sistema de pagamento
+Aprovação ou falha
 
-📎 Arquivo disponível na pasta /docs
+📌 Arquivo disponível em: docs/diagrama-atividades.png
 
-🧩 Diagrama Entidade-Relacionamento (DER)
+🔹 Diagrama Entidade-Relacionamento (DER)
 
-O DER modela a estrutura de dados da aplicação, contendo entidades como:
+Entidades modeladas:
 
 Cliente
 Produto
@@ -41,53 +53,56 @@ Pedido
 Item do Pedido
 Pagamento
 
-Inclui:
+Relacionamentos:
 
-Chaves primárias (PK)
-Chaves estrangeiras (FK)
-Relacionamentos e cardinalidades
+Cliente 1:N Pedido
+Pedido 1:N ItemPedido
+Produto 1:N ItemPedido
+Pedido 1:1 Pagamento
 
-📎 Arquivo disponível na pasta /docs
+📌 Arquivo disponível em: docs/der.png
 
-💻 Implementação em Java
+💻 Tecnologias Utilizadas
+Java
+Paradigma Orientado a Objetos
+UML
+Modelagem de Dados
+🔐 Padrão de Projeto Utilizado
+Singleton – PagamentoService
 
-A aplicação foi desenvolvida utilizando:
+O padrão Singleton foi aplicado na classe PagamentoService.
 
-Linguagem: Java
-Paradigma: Orientação a Objetos
-Arquitetura: Cliente-servidor monolítica
-Interface: Sem interface gráfica (simulação via código/API)
-🔧 Funcionalidades simuladas
-Identificação de cliente (dados estáticos)
-Listagem de produtos
-Criação de pedidos
-Processamento de pagamento
-🧱 Estrutura do Projeto
-src/
-├── model/        # Entidades (Cliente, Produto, Pedido, etc.)
-├── service/      # Regras de negócio
-├── repository/   # Simulação de persistência de dados
-├── controller/   # Camada de controle (simulação de API)
-└── main/         # Classe principal para execução
-🧠 Decisões Arquiteturais
-Uso de separação em camadas para organização do código
-Simulação de persistência com dados em memória
-Centralização da lógica de negócio na camada service
-Arquitetura monolítica conforme proposto no enunciado
-🔒 Padrão Singleton
+✔ Justificativa:
 
-A comunicação com o sistema externo de pagamento foi implementada utilizando o padrão de projeto Singleton.
+Foi utilizado para garantir que exista apenas uma instância do serviço de pagamento durante toda a execução do sistema, evitando múltiplas conexões com o sistema externo e garantindo consistência no processamento.
 
-📍 Onde foi aplicado
+▶️ Como Executar o Projeto
+1. Compilar
 
-Classe responsável pela integração com o sistema de pagamento:
+No terminal, dentro da pasta src:
 
-PaymentGateway
-💡 Justificativa
+javac com/lojinha/main/Main.java
+2. Executar
+java com.lojinha.main.Main
+📁 Estrutura de Arquivos
+lojinha-online/
+ ├── src/
+ │   └── com/lojinha/
+ │       ├── model/
+ │       ├── service/
+ │       └── main/
+ ├── docs/
+ └── README.md
 
-O uso do Singleton garante que:
+🚀 Melhorias Futuras
+Implementar banco de dados real
+Criar API REST
+Adicionar interface gráfica
+Implementar autenticação de usuários
+Melhorar validações de pagamento
 
-Apenas uma instância da conexão com o sistema de pagamento exista
-Evita múltiplas conexões desnecessárias
-Mantém consistência na comunicação com o serviço externo
-Reduz consumo de recursos
+
+👨‍💻 Autor
+Pedro Amaral
+
+Projeto desenvolvido para fins acadêmicos.
