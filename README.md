@@ -1,6 +1,9 @@
 # Loja_Online
+
 Padrão Singleton
+
 🛒 Loja Online – Simulação em Java
+
 📌 Descrição do Projeto
 
 Este projeto consiste na implementação de uma simulação de uma loja online, desenvolvida em Java utilizando os princípios de Programação Orientada a Objetos (POO).
@@ -15,6 +18,7 @@ com.lojinha
 ├── main      → Ponto de entrada do sistema
 ├── model     → Entidades (dados do sistema)
 └── service   → Regras de negócio
+
 📌 Características:
 Arquitetura monolítica
 Separação de responsabilidades
@@ -55,7 +59,9 @@ Evita múltiplas conexões desnecessárias
 Garante consistência no processamento
 Reduz uso de recursos
 Centraliza a lógica de pagamento
+
 🧩 Modelagem do Sistema
+
 📊 Diagrama de Atividades
 
 Representa o fluxo completo da aplicação, incluindo:
@@ -74,6 +80,7 @@ Produto
 Pedido
 ItemPedido
 Pagamento
+
 📌 Relacionamentos:
 Cliente (1) Pedido
 Pedido (1) ItemPedido
@@ -91,11 +98,14 @@ lojinha-online/
 │   ├── diagrama_atividades.png
 │   └── der.png
 └── README.md
+
 🚀 Como Executar o Projeto
+
 📌 Pré-requisitos
 Java JDK instalado
 Terminal (PowerShell ou CMD)
 Visual Studio Code (opcional)
+
 ▶️ Passo a passo
 Acesse a pasta src:
 cd src
@@ -105,9 +115,11 @@ Volte uma pasta:
 cd ..
 Execute o sistema:
 java com.lojinha.main.Main
+
 📌 Saída Esperada
 Processando pagamento de R$ 2050.0
 Pagamento aprovado! Pedido confirmado.
+
 🎯 Conclusão
 
 O projeto demonstra de forma prática:
@@ -117,10 +129,14 @@ Organização em camadas
 Uso de padrão de projeto (Singleton)
 Modelagem com UML e DER
 Simulação de sistema real
+
+
 👨‍💻 Autor
 
 Pedro Paulo Costa do Amaral
 
+
 📎 Observações
+
 
 Este projeto foi desenvolvido para fins acadêmicos, com foco na compreensão de arquitetura de software, modelagem e boas práticas de desenvolvimento.
