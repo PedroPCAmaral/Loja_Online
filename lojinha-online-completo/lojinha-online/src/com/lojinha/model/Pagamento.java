@@ -31,9 +31,6 @@ public class Pagamento {
 
     @Override
     public String toString() {
-        return "Pagamento{id=" + id +
-                ", valor=" + valor +
-                ", status='" + status + '\'' +
-                ", pedidoId=" + pedidoId + '}';
+        return "Pagamento{id=" + id + ", valor=" + valor + ", status='" + status + "', pedidoId=" + pedidoId + "}";
     }
 }

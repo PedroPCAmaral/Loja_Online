@@ -11,7 +11,6 @@ public class PagamentoService {
     private PagamentoService() {
     }
 
-    /* Singleton */
     public static PagamentoService getInstance() {
         if (instance == null) {
             instance = new PagamentoService();
@@ -20,17 +19,31 @@ public class PagamentoService {
     }
 
     public Pagamento processarPagamento(Pedido pedido) {
-        double valor = pedido.calcularTotal();
+        if (pedido == null) {
+            throw new IllegalArgumentException("Pedido não pode ser nulo.");
+        }
 
-        String status;
+        if (pedido.getItens().isEmpty()) {
+            throw new IllegalStateException("Não é possível processar pagamento de um pedido sem itens.");
+        }
+
+        if ("PAGO".equals(pedido.getStatus())) {
+            throw new IllegalStateException("Este pedido já foi pago.");
+        }
+
+        pedido.setStatus("AGUARDANDO_PAGAMENTO");
+
+        double valor = pedido.calcularTotal();
+        String statusPagamento;
+
         if (valor > 0) {
-            status = "APROVADO";
+            statusPagamento = "APROVADO";
             pedido.setStatus("PAGO");
         } else {
-            status = "RECUSADO";
+            statusPagamento = "RECUSADO";
             pedido.setStatus("PAGAMENTO_NEGADO");
         }
 
-        return new Pagamento(sequenciaPagamento++, valor, status, pedido.getId());
+        return new Pagamento(sequenciaPagamento++, valor, statusPagamento, pedido.getId());
     }
 }

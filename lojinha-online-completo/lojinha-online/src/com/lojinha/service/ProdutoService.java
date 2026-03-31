@@ -12,6 +12,7 @@ public class ProdutoService {
         produtos.add(new Produto(1, "Notebook", 2000.0));
         produtos.add(new Produto(2, "Mouse", 50.0));
         produtos.add(new Produto(3, "Teclado", 120.0));
+        produtos.add(new Produto(4, "Monitor", 900.0));
     }
 
     public List<Produto> listarProdutos() {

@@ -6,6 +6,14 @@ public class Cliente {
     private String email;
 
     public Cliente(int id, String nome, String email) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome do cliente não pode ser vazio.");
+        }
+
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email do cliente não pode ser vazio.");
+        }
+
         this.id = id;
         this.nome = nome;
         this.email = email;

@@ -6,6 +6,14 @@ public class Produto {
     private double preco;
 
     public Produto(int id, String nome, double preco) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome do produto não pode ser vazio.");
+        }
+
+        if (preco <= 0) {
+            throw new IllegalArgumentException("Preço do produto deve ser maior que zero.");
+        }
+
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -27,4 +35,4 @@ public class Produto {
     public String toString() {
         return "Produto{id=" + id + ", nome='" + nome + "', preco=" + preco + "}";
     }
-};
+}

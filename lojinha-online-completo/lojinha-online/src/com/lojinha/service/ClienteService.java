@@ -14,6 +14,10 @@ public class ClienteService {
         clientes.add(new Cliente(3, "João", "joao@email.com"));
     }
 
+    public List<Cliente> listarClientes() {
+        return clientes;
+    }
+
     public Cliente buscarPorId(int id) {
         for (Cliente cliente : clientes) {
             if (cliente.getId() == id) {
@@ -21,9 +25,5 @@ public class ClienteService {
             }
         }
         return null;
-    }
-
-    public List<Cliente> listarClientes() {
-        return clientes;
     }
 }
