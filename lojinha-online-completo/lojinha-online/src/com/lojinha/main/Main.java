@@ -1,25 +1,59 @@
 package com.lojinha.main;
 
-import com.lojinha.model.*;
+import com.lojinha.model.Cliente;
+import com.lojinha.model.Pagamento;
+import com.lojinha.model.Pedido;
+import com.lojinha.model.Produto;
+import com.lojinha.service.ClienteService;
 import com.lojinha.service.PagamentoService;
+import com.lojinha.service.PedidoService;
+import com.lojinha.service.ProdutoService;
 
 public class Main {
     public static void main(String[] args) {
+        ClienteService clienteService = new ClienteService();
+        ProdutoService produtoService = new ProdutoService();
+        PedidoService pedidoService = new PedidoService();
 
-        Cliente cliente = new Cliente(1, "Pedro", "pedro@email.com");
+        System.out.println("=== SEJA BEM VINDO A LOJINHA ===");
+        System.out.println();
 
-        Produto p1 = new Produto(1, "Notebook", 2000.0);
-        Produto p2 = new Produto(2, "Mouse", 50.0);
+        System.out.println("=== CLIENTES ===");
+        for (Cliente c : clienteService.listarClientes()) {
+            System.out.println(c);
+        }
 
-        Pedido pedido = new Pedido(1, cliente);
+        System.out.println("\n=== PRODUTOS DISPONÍVEIS ===");
+        for (Produto p : produtoService.listarProdutos()) {
+            System.out.println(p);
+        }
 
-        pedido.adicionarItem(new ItemPedido(p1, 1));
-        pedido.adicionarItem(new ItemPedido(p2, 1));
+        Cliente cliente = clienteService.buscarPorId(1);
 
-        double total = pedido.calcularTotal();
+        Pedido pedido = pedidoService.criarPedido(1, cliente);
 
-        PagamentoService pagamento = PagamentoService.getInstance();
+        pedidoService.adicionarItem(pedido, produtoService.buscarPorId(1), 1);
+        pedidoService.adicionarItem(pedido, produtoService.buscarPorId(2), 2);
 
-        pagamento.processarPagamento(total);
+        pedidoService.fecharPedido(pedido);
+
+        System.out.println("\n=== PEDIDO CRIADO ===");
+        System.out.println("Cliente: " + pedido.getCliente().getNome());
+
+        for (var item : pedido.getItens()) {
+            System.out.println(item);
+        }
+
+        System.out.println("Total do pedido: " + pedido.calcularTotal());
+        System.out.println("Status do pedido: " + pedido.getStatus());
+
+        PagamentoService pagamentoService = PagamentoService.getInstance();
+        Pagamento pagamento = pagamentoService.processarPagamento(pedido);
+
+        System.out.println("\n=== PAGAMENTO ===");
+        System.out.println(pagamento);
+
+        System.out.println("\n=== STATUS FINAL DO PEDIDO ===");
+        System.out.println(pedido);
     }
 }

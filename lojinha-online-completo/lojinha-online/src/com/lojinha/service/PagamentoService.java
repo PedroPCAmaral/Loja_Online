@@ -1,31 +1,36 @@
 package com.lojinha.service;
 
-/*
- * Singleton aplicado para garantir apenas UMA instância
- * de comunicação com o sistema de pagamento externo.
- */
+import com.lojinha.model.Pagamento;
+import com.lojinha.model.Pedido;
+
 public class PagamentoService {
 
-    private static PagamentoService instancia;
+    private static PagamentoService instance;
+    private int sequenciaPagamento = 1;
 
-    private PagamentoService() {}
-
-    public static PagamentoService getInstance() {
-        if (instancia == null) {
-            instancia = new PagamentoService();
-        }
-        return instancia;
+    private PagamentoService() {
     }
 
-    public boolean processarPagamento(double valor) {
-        System.out.println("Processando pagamento de R$ " + valor);
-
-        if (valor > 0) {
-            System.out.println("Pagamento aprovado! Pedido confirmado.");
-            return true;
-        } else {
-            System.out.println("Pagamento recusado.");
-            return false;
+    /* Singleton */
+    public static PagamentoService getInstance() {
+        if (instance == null) {
+            instance = new PagamentoService();
         }
+        return instance;
+    }
+
+    public Pagamento processarPagamento(Pedido pedido) {
+        double valor = pedido.calcularTotal();
+
+        String status;
+        if (valor > 0) {
+            status = "APROVADO";
+            pedido.setStatus("PAGO");
+        } else {
+            status = "RECUSADO";
+            pedido.setStatus("PAGAMENTO_NEGADO");
+        }
+
+        return new Pagamento(sequenciaPagamento++, valor, status, pedido.getId());
     }
 }
