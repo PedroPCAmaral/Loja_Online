@@ -134,7 +134,7 @@ Simulação de sistema real
 👨‍💻 Autor
 
 Pedro Paulo Costa do Amaral
-
+Luiz Felipe Ferraz de Carvalho
 
 📎 Observações
 
